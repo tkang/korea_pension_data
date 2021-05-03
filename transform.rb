@@ -20,6 +20,7 @@ File.readlines(input_filename).each do |line|
   postal_code = splits[4]
   address = splits[5]
   street_address = splits[6]
+  industry_name= splits[n-8]
   total_employee_count = splits[n-4].to_i
   national_pension_paid_total = splits[n-3].to_i
   new_employee_count = splits[n-2].to_i
@@ -27,6 +28,7 @@ File.readlines(input_filename).each do |line|
   national_pension_paid_per_employee = total_employee_count > 0 ? (national_pension_paid_total / total_employee_count) : 0
   avg_monthly_salary = (national_pension_paid_per_employee / PENSION_PAYMENT_RATE).to_i
   h = { yyyymm: yyyymm, company_name: company_name, registration_num: registration_num,
+        industry_name: industry_name,
         registered: registered, postal_code: postal_code, address: address,
         street_address: street_address, total_employee_count: total_employee_count,
         new_employee_count: new_employee_count, quit_employee_count: quit_employee_count,
