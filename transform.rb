@@ -27,13 +27,13 @@ File.readlines(input_filename).each do |line|
   quit_employee_count = splits[n-1].to_i
   national_pension_paid_per_employee = total_employee_count > 0 ? (national_pension_paid_total / total_employee_count) : 0
   avg_monthly_salary = (national_pension_paid_per_employee / PENSION_PAYMENT_RATE).to_i
-  h = { yyyymm: yyyymm, company_name: company_name, registration_num: registration_num,
-        industry_name: industry_name,
-        registered: registered, postal_code: postal_code, address: address,
-        street_address: street_address, total_employee_count: total_employee_count,
-        new_employee_count: new_employee_count, quit_employee_count: quit_employee_count,
-        national_pension_paid_total: national_pension_paid_total,
-        national_pension_paid_per_employee: national_pension_paid_per_employee,
-        avg_monthly_salary: avg_monthly_salary }
+  h = { yyyymm: yyyymm, companyName: company_name, registrationNum: registration_num,
+        industryName: industry_name,
+        registered: registered, postalCode: postal_code, address: address,
+        streetAddress: street_address, totalEmployeeCount: total_employee_count,
+        newEmployeeCount: new_employee_count, quitEmployeeCount: quit_employee_count,
+        nationalPensionPaidTotal: national_pension_paid_total,
+        nationalPensionPaidPerEmployee: national_pension_paid_per_employee,
+        avgMonthlySalary: avg_monthly_salary }
   puts h.to_json
 end
