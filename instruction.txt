@@ -1,0 +1,30 @@
+1. 인코딩 변환
+iconv -f cp949 -t UTF-8 KoreaNationalPensionData_202108.csv > KoreaNationalPensionData_202108_UTF8.csv
+
+2. find duplicates
+ruby extract_company_name_reg_num_postal_code.rb KoreaNationalPensionData_202108_UTF8.csv | sort | uniq -d > duplicates_202108.csv
+
+3. filter duplicates
+ruby filter_duplicate.rb duplicates_202108.csv KoreaNationalPensionData_202108_UTF8.csv > KoreaNationalPensionData_202108_UTF8_duplicates_removed.csv
+
+4. create pension data with duplicates removed
+ruby pension_data_csv_to_json.rb KoreaNationalPensionData_202108_UTF8_duplicates_removed.csv > PensionData_202108_UTF8_duplicates_removed.json
+
+5. extract keys for this month and last month
+#ruby extract_keys.rb KoreaNationalPensionData_202107_UTF8_duplicates_removed.csv > keys_202107.txt
+ruby extract_keys.rb KoreaNationalPensionData_202108_UTF8_duplicates_removed.csv > keys_202108.txt
+
+6. list new keys
+ruby list_new_keys.rb keys_202108.txt keys_202107.txt > new_keys_202108.txt
+
+7. list company_info with new key only
+ruby list_new_company_info_only_in_json.rb new_keys_202108.txt KoreaNationalPensionData_202108_UTF8_duplicates_removed.csv > CompanyInfo_202108_UTF_newdata.json
+
+8. bulk insert new company info into dynamodb
+ruby company_info_bulk_insert_to_dynamodb.rb CompanyInfo_202108_UTF_newdata.json
+
+9. bulk insert pension data into dynamodb
+ruby pension_data_bulk_insert_to_dynamodb.rb PensionData_202108_UTF8_duplicates_removed.json
+
+
+
