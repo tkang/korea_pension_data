@@ -26,5 +26,14 @@ ruby company_info_bulk_insert_to_dynamodb.rb CompanyInfo_202108_UTF_newdata.json
 9. bulk insert pension data into dynamodb
 ruby pension_data_bulk_insert_to_dynamodb.rb PensionData_202108_UTF8_duplicates_removed.json
 
+10. cleanup
+rm PensionData_202108_UTF8_duplicates_removed.json
+rm CompanyInfo_202108_UTF_newdata.json
+rm KoreaNationalPensionData_202108_UTF8_duplicates_removed.csv
+rm KoreaNationalPensionData_202108.csv
+rm keys_202107.txt
+
+# leave keys_202108.txt
+# leave KoreaNationalPensionData_202108_UTF8.csv
 
 
